@@ -1,14 +1,15 @@
 // ==UserScript==
-// @name         DiscordImageDownload
-// @namespace    net.englard.shmuelie
-// @version      1.1
-// @description  Extract images from discord channel
-// @author       Shmuelie
-// @match        https://*.discord.com/*
-// @grant        none
-// @updateURL    https://gist.githubusercontent.com/SamuelEnglard/9d4ea7c521433d2194f382758e59d3a1/raw/DiscordImageDownload.js
-// @run-at       context-menu
-// @website      https://gist.github.com/SamuelEnglard/9d4ea7c521433d2194f382758e59d3a1
+// @name        DiscordImageDownload
+// @namespace   net.englard.shmuelie
+// @version     1.1
+// @description Extract images from discord channel
+// @author      Shmuelie
+// @match       https://*.discord.com/*
+// @grant       none
+// @run-at      context-menu
+// @website     https://github.com/SamuelEnglard/user-scripts/blob/main/src/DiscordImageDownload.js
+// @updateURL   https://raw.githubusercontent.com/SamuelEnglard/user-scripts/main/src/DiscordImageDownload.js
+// @supportURL  https://github.com/SamuelEnglard/user-scripts/issues
 // ==/UserScript==
 
 (function() {
