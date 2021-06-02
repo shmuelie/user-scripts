@@ -7,8 +7,8 @@
 // @match       https://*.discord.com/*
 // @grant       none
 // @run-at      context-menu
-// @website     https://github.com/SamuelEnglard/user-scripts/blob/main/src/DiscordImageDownload.js
-// @updateURL   https://raw.githubusercontent.com/SamuelEnglard/user-scripts/main/src/DiscordImageDownload.js
+// @website     https://github.com/SamuelEnglard/user-scripts/blob/main/src/DiscordImageDownload.user.js
+// @updateURL   https://raw.githubusercontent.com/SamuelEnglard/user-scripts/main/src/DiscordImageDownload.user.js
 // @supportURL  https://github.com/SamuelEnglard/user-scripts/issues
 // ==/UserScript==
 
