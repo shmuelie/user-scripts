@@ -1,11 +1,16 @@
 // ==UserScript==
-// @name         Get Jump Player Video
-// @namespace    http://tampermonkey.net/
-// @version      1.0
-// @description  try to take over the world!
-// @author       You
-// @match        https://jwp.io/s/*
-// @grant        none
+// @name        Get Jump Player Video
+// @namespace   net.englard.shmuelie
+// @version     1.0.0
+// @description Append video URLs to end of Jump Player pages.
+// @author      Shmuelie
+// @match       https://jwp.io/s/*
+// @grant       none
+// @website     https://github.com/SamuelEnglard/user-scripts/blob/main/src/GetJumpPlayerVideo.user.js
+// @updateURL   https://raw.githubusercontent.com/SamuelEnglard/user-scripts/main/src/GetJumpPlayerVideo.user.js
+// @supportURL  https://github.com/SamuelEnglard/user-scripts/issues
+// @run-at      document-idle
+// @noframes
 // ==/UserScript==
 
 (function() {

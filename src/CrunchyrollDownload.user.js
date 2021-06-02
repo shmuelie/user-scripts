@@ -1,11 +1,16 @@
 // ==UserScript==
-// @name         Crunchyroll Download
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       Shmuelie
-// @match        https://www.crunchyroll.com/*
-// @grant        none
+// @name        Crunchyroll Download
+// @namespace   net.englard.shmuelie
+// @version     1.0.0
+// @description Append YTDL cli to Crunchyroll pages.
+// @author      Shmuelie
+// @match       https://www.crunchyroll.com/*
+// @grant       none
+// @website     https://github.com/SamuelEnglard/user-scripts/blob/main/src/CrunchyrollDownload.user.js
+// @updateURL   https://raw.githubusercontent.com/SamuelEnglard/user-scripts/main/src/CrunchyrollDownload.user.js
+// @supportURL  https://github.com/SamuelEnglard/user-scripts/issues
+// @run-at      document-idle
+// @noframes
 // ==/UserScript==
 
 (function () {

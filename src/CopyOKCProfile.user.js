@@ -1,11 +1,16 @@
 // ==UserScript==
-// @name         Copy OKC Profile
-// @namespace    http://tampermonkey.net/
-// @version      1.0
-// @description  Open new window with profile in plain text form.
-// @author       Shmuelie
-// @match        https://www.okcupid.com/profile/*
-// @grant        none
+// @name        Copy OKC Profile
+// @namespace   net.englard.shmuelie
+// @version     1.0.0
+// @description Open new window with profile in plain text form.
+// @author      Shmuelie
+// @match       https://www.okcupid.com/profile/*
+// @grant       none
+// @website     https://github.com/SamuelEnglard/user-scripts/blob/main/src/CopyOKCProfile.user.js
+// @updateURL   https://raw.githubusercontent.com/SamuelEnglard/user-scripts/main/src/CopyOKCProfile.user.js
+// @supportURL  https://github.com/SamuelEnglard/user-scripts/issues
+// @run-at      document-idle
+// @noframes
 // ==/UserScript==
 
 (function() {
