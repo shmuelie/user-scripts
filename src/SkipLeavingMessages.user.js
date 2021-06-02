@@ -7,8 +7,8 @@
 // @match       https://www.youtube.com/redirect*
 // @match       https://steamcommunity.com/linkfilter/*
 // @grant       none
-// @website     https://github.com/SamuelEnglard/user-scripts/blob/main/src/SkipLeavingMessages.js
-// @updateURL   https://raw.githubusercontent.com/SamuelEnglard/user-scripts/main/src/SkipLeavingMessages.js
+// @website     https://github.com/SamuelEnglard/user-scripts/blob/main/src/SkipLeavingMessages.user.js
+// @updateURL   https://raw.githubusercontent.com/SamuelEnglard/user-scripts/main/src/SkipLeavingMessages.user.js
 // @supportURL  https://github.com/SamuelEnglard/user-scripts/issues
 // @run-at      document-idle
 // @noframes
