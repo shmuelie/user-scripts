@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name        YtSkip
+// @name        YouTube Skip
 // @namespace   net.englard.shmuelie
-// @version     1.1
+// @version     1.1.0
 // @description Skip YouTube redirect permission page.
 // @author      Shmuelie
 // @match       https://www.youtube.com/redirect*
@@ -9,6 +9,7 @@
 // @website     https://github.com/SamuelEnglard/user-scripts/blob/main/src/YtSkip.user.js
 // @updateURL   https://raw.githubusercontent.com/SamuelEnglard/user-scripts/main/src/YtSkip.user.js
 // @supportURL  https://github.com/SamuelEnglard/user-scripts/issues
+// @noframes
 // ==/UserScript==
 
 (function() {

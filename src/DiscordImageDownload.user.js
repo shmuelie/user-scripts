@@ -1,15 +1,16 @@
 // ==UserScript==
-// @name        DiscordImageDownload
+// @name        Discord Image Download
 // @namespace   net.englard.shmuelie
 // @version     1.1
 // @description Extract images from discord channel
 // @author      Shmuelie
 // @match       https://*.discord.com/*
 // @grant       none
-// @run-at      context-menu
 // @website     https://github.com/SamuelEnglard/user-scripts/blob/main/src/DiscordImageDownload.user.js
 // @updateURL   https://raw.githubusercontent.com/SamuelEnglard/user-scripts/main/src/DiscordImageDownload.user.js
 // @supportURL  https://github.com/SamuelEnglard/user-scripts/issues
+// @run-at      context-menu
+// @noframes
 // ==/UserScript==
 
 (function() {
