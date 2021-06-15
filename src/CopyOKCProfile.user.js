@@ -6,9 +6,9 @@
 // @author      Shmuelie
 // @match       https://www.okcupid.com/profile/*
 // @grant       none
-// @website     https://github.com/SamuelEnglard/user-scripts/blob/main/src/CopyOKCProfile.user.js
-// @updateURL   https://raw.githubusercontent.com/SamuelEnglard/user-scripts/main/src/CopyOKCProfile.user.js
-// @supportURL  https://github.com/SamuelEnglard/user-scripts/issues
+// @website     https://github.com/shmuelie/user-scripts/blob/main/src/CopyOKCProfile.user.js
+// @updateURL   https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/CopyOKCProfile.user.js
+// @supportURL  https://github.com/shmuelie/user-scripts/issues
 // @run-at      document-idle
 // @noframes
 // ==/UserScript==

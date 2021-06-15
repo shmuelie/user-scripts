@@ -7,9 +7,9 @@
 // @match       https://onlyfans.com/*
 // @match       https://*.spotlightr.com/*
 // @grant       none
-// @website     https://github.com/SamuelEnglard/user-scripts/blob/main/src/AllowContext.user.js
-// @updateURL   https://raw.githubusercontent.com/SamuelEnglard/user-scripts/main/src/AllowContext.user.js
-// @supportURL  https://github.com/SamuelEnglard/user-scripts/issues
+// @website     https://github.com/shmuelie/user-scripts/blob/main/src/AllowContext.user.js
+// @updateURL   https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/AllowContext.user.js
+// @supportURL  https://github.com/shmuelie/user-scripts/issues
 // @run-at      document-idle
 // @noframes
 // ==/UserScript==
