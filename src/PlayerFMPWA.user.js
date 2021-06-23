@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        PlayerFM PWA
 // @namespace   net.englard.shmuelie
-// @version     1.1.0
+// @version     1.1.1
 // @description Enables PWA features in PlayerFM web.
 // @author      Shmuelie
 // @match       https://player.fm/*
@@ -22,14 +22,14 @@
         function onPlay() {
             ms.playbackState = "playing";
             ms.metadata = new MediaMetadata({
-                album: episode.series.title,
-                artist: episode.series.network.name || episode.series.owner,
+                album: p.currentEpisode.series.title,
+                artist: p.currentEpisode.series.network.name || p.currentEpisode.series.owner,
                 artwork: [
                     {
-                        src: episode.series.imageModel.url
+                        src: p.currentEpisode.series.imageModel.url
                     }
                 ],
-                title: episode.title
+                title: p.currentEpisode.title
             });
             if (ms.setPositionState) {
                 ms.setPositionState({
