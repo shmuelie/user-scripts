@@ -15,3 +15,5 @@
 [![Install Skip Leaving Messages](https://img.shields.io/badge/install-Skip%20Leaving%20Messages-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/SkipLeavingMessages.user.js)
 
 [![Install YouTube Skip](https://img.shields.io/badge/install-YouTube%20Skip-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/YtSkip.user.js)
+
+[![Install PlayerFM PWA](https://img.shields.io/badge/install-PlayerFM%20-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/PlayerFMPWA.user.js)
