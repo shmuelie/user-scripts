@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        PlayerFM PWA
 // @namespace   net.englard.shmuelie
-// @version     1.2.0
+// @version     1.2.1
 // @description Enables PWA features in PlayerFM web.
 // @author      Shmuelie
 // @match       https://player.fm/*
@@ -45,8 +45,8 @@
             if (ms.setPositionState) {
                 ms.setPositionState({
                     duration: p.currentEpisode.duration,
-                    position: this.player.getCurrentTime(),
-                    playbackRate: player.getSpeed()
+                    position: p.getCurrentTime(),
+                    playbackRate: p.getSpeed()
                 });
             }
         }
