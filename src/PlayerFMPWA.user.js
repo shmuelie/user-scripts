@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        PlayerFM PWA
 // @namespace   net.englard.shmuelie
-// @version     1.0.0
+// @version     1.1.0
 // @description Enables PWA features in PlayerFM web.
 // @author      Shmuelie
 // @match       https://player.fm/*
@@ -15,26 +15,29 @@
 (function() {
     'use strict';
 
-    function getMediaMeta(/** @type {Episode} */episode) {
-        return new MediaMetadata({
-            album: episode.series.title,
-            artist: episode.series.network.name || episode.series.owner,
-            artwork: [
-                {
-                    src: episode.series.imageModel.url
-                }
-            ],
-            title: episode.title
-        });
-    }
-
     if (window.player) {
         const p = window.player;
         const ms = navigator.mediaSession;
 
         function onPlay() {
             ms.playbackState = "playing";
-            ms.metadata = getMediaMeta(p.currentEpisode);
+            ms.metadata = new MediaMetadata({
+                album: episode.series.title,
+                artist: episode.series.network.name || episode.series.owner,
+                artwork: [
+                    {
+                        src: episode.series.imageModel.url
+                    }
+                ],
+                title: episode.title
+            });
+            if (ms.setPositionState) {
+                ms.setPositionState({
+                    duration: p.currentEpisode.duration,
+                    position: this.player.getCurrentTime(),
+                    playbackRate: player.getSpeed()
+                });
+            }
         }
 
         function onPause() {
@@ -55,5 +58,18 @@
         ms.setActionHandler("play", function() {
             p.togglePlayback(true);
         });
+        ms.setActionHandler("seekforward", function () {
+            p.seekIncrement(p.getForwardJumpDuration());
+        });
+        ms.setActionHandler("seekbackward", function () {
+            p.seekIncrement(-p.getBackwardJumpDuration());
+        })
+        ms.setActionHandler("nexttrack", function () {
+            p.gotoNext(false);
+        });
+        ms.setActionHandler("previoustrack", function () {
+            p.gotoPrev();
+        });
+
     }
 })();
