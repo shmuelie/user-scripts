@@ -38,3 +38,7 @@ interface ImageModel {
 interface Network {
     name: string;
 }
+
+interface Window {
+    player?: Player;
+}

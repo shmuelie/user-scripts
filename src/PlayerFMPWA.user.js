@@ -29,9 +29,6 @@
     }
 
     if (window.player) {
-        /**
-         * @type {Player}
-         */
         const p = window.player;
         const ms = navigator.mediaSession;
 
