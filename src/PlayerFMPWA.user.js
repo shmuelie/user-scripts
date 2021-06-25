@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        PlayerFM PWA
 // @namespace   net.englard.shmuelie
-// @version     1.2.1
+// @version     1.3.0
 // @description Enables PWA features in PlayerFM web.
 // @author      Shmuelie
 // @match       https://player.fm/*
@@ -49,6 +49,41 @@
                     playbackRate: p.getSpeed()
                 });
             }
+            updatePlaylist();
+        }
+
+        function onSeekForward() {
+            p.seekIncrement(p.getForwardJumpDuration());
+        }
+
+        function onSeekBackward() {
+            p.seekIncrement(-p.getBackwardJumpDuration());
+        }
+
+        function onNextTrack() {
+            p.gotoNext(false);
+        }
+
+        function onPreviousTrack() {
+            p.gotoPrev();
+        }
+
+        function updatePlaylist() {
+            if (p.currentPlaylist) {
+                if (p.currentPlaylist.index > 0) {
+                    ms.setActionHandler("previoustrack", onPreviousTrack);
+                } else {
+                    ms.setActionHandler("previoustrack", null);
+                }
+                if (p.currentPlaylist.index < p.currentPlaylist.length() - 1) {
+                    ms.setActionHandler("nexttrack", onNextTrack);
+                } else {
+                    ms.setActionHandler("nexttrack", null);
+                }
+            } else {
+                ms.setActionHandler("nexttrack", null);
+                ms.setActionHandler("previoustrack", null);
+            }
         }
 
         p.listen("play", onPlay);
@@ -62,18 +97,8 @@
         ms.setActionHandler("play", function() {
             p.togglePlayback(true);
         });
-        ms.setActionHandler("seekforward", function () {
-            p.seekIncrement(p.getForwardJumpDuration());
-        });
-        ms.setActionHandler("seekbackward", function () {
-            p.seekIncrement(-p.getBackwardJumpDuration());
-        })
-        ms.setActionHandler("nexttrack", function () {
-            p.gotoNext(false);
-        });
-        ms.setActionHandler("previoustrack", function () {
-            p.gotoPrev();
-        });
-
+        ms.setActionHandler("seekforward", onSeekForward);
+        ms.setActionHandler("seekbackward", onSeekBackward);
+        updatePlaylist();
     }
 })();
