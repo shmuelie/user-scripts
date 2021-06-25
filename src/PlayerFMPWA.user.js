@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        PlayerFM PWA
 // @namespace   net.englard.shmuelie
-// @version     1.3.1
+// @version     1.3.2
 // @description Enables PWA features in PlayerFM web.
 // @author      Shmuelie
 // @match       https://player.fm/*
@@ -15,7 +15,7 @@
 (function() {
     'use strict';
 
-    if (window.player) {
+    if (window.player && navigator.mediaSession) {
         const p = window.player;
         const ms = navigator.mediaSession;
 
