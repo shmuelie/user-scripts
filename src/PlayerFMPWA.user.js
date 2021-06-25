@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        PlayerFM PWA
 // @namespace   net.englard.shmuelie
-// @version     1.3.0
+// @version     1.3.1
 // @description Enables PWA features in PlayerFM web.
 // @author      Shmuelie
 // @match       https://player.fm/*
@@ -44,7 +44,7 @@
         function onTimeupdate() {
             if (ms.setPositionState) {
                 ms.setPositionState({
-                    duration: p.currentEpisode.duration,
+                    duration: p.getDuration(),
                     position: p.getCurrentTime(),
                     playbackRate: p.getSpeed()
                 });
