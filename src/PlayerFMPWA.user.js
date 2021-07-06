@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        PlayerFM PWA
 // @namespace   net.englard.shmuelie
-// @version     1.3.2
+// @version     1.3.3
 // @description Enables PWA features in PlayerFM web.
 // @author      Shmuelie
 // @match       https://player.fm/*
@@ -31,6 +31,7 @@
                 ],
                 title: p.currentEpisode.title
             });
+            document.title = "PlayerFM: " + p.currentEpisode.series.title + " - " + p.currentEpisode.title;
         }
 
         function onPause() {
