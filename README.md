@@ -17,3 +17,5 @@
 [![Install YouTube Skip](https://img.shields.io/badge/install-YouTube%20Skip-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/YtSkip.user.js)
 
 [![Install PlayerFM PWA](https://img.shields.io/badge/install-PlayerFM%20PWA-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/PlayerFMPWA.user.js)
+
+[![Install SawYouAtSinai Profile Copier](https://img.shields.io/badge/install-SawYouAtSinai%20Profile%20Copier-green?style=for-the-badge)][https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/SYASProfileCopyer.user.js]
