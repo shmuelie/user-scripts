@@ -40,6 +40,8 @@ interface FunimationPlayer {
     readonly episodeIndex: number;
     readonly seasonIndex: number;
     readonly videoTag: HTMLVideoElement;
+    readonly videoSelector: string;
+    readonly player: videojs.VideoJsPlayer;
     /**
      * Plays the next episode.
      *
