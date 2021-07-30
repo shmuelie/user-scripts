@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Funimation PWA
 // @namespace   net.englard.shmuelie
-// @version     1.0.2
+// @version     1.1.0
 // @description Enables PWA features in Funimation web.
 // @author      Shmuelie
 // @match       https://www.funimation.com/player/*
@@ -14,9 +14,10 @@
 (function () {
     'use strict';
 
-    if (window.fp && navigator.mediaSession) {
+    if (window.fp && navigator.mediaSession && window.videojs) {
         const p = window.fp;
         const ms = navigator.mediaSession;
+        const vjs = window.videojs;
 
         function onPlay() {
             ms.playbackState = "playing";
@@ -50,18 +51,20 @@
             p.goBack10();
         }
 
-        p.videoTag.addEventListener("play", onPlay);
-        p.videoTag.addEventListener("pause", onPause);
-        p.videoTag.addEventListener("ended", onEnded);
-        p.videoTag.addEventListener("timeupdate", onTimeupdate);
+        p.player.ready(function () {
+            p.videoTag.addEventListener("play", onPlay);
+            p.videoTag.addEventListener("pause", onPause);
+            p.videoTag.addEventListener("ended", onEnded);
+            p.videoTag.addEventListener("timeupdate", onTimeupdate);
 
-        ms.setActionHandler("pause", function () {
-            p.toggleVideoPlayback("off");
+            ms.setActionHandler("pause", function () {
+                p.toggleVideoPlayback("off");
+            });
+            ms.setActionHandler("play", function () {
+                p.toggleVideoPlayback("on");
+            });
+            ms.setActionHandler("seekforward", onSeekForward);
+            ms.setActionHandler("seekbackward", onSeekBackward);
         });
-        ms.setActionHandler("play", function () {
-            p.toggleVideoPlayback("on");
-        });
-        ms.setActionHandler("seekforward", onSeekForward);
-        ms.setActionHandler("seekbackward", onSeekBackward);
     }
 })();
