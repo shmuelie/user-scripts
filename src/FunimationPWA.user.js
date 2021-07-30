@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name        Funimation PWA
 // @namespace   net.englard.shmuelie
-// @version     1.0.0
+// @version     1.0.1
 // @description Enables PWA features in Funimation web.
 // @author      Shmuelie
-// @match       https://funimation.com/player/*
+// @match       https://www.funimation.com/player/*
 // @grant       none
 // @website     https://github.com/shmuelie/user-scripts/blob/main/src/FunimationPWA.user.js
 // @updateURL   https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/FunimationPWA.user.js
