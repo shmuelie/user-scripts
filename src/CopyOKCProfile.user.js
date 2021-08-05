@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Copy OKC Profile
 // @namespace   net.englard.shmuelie
-// @version     1.0.0
+// @version     2.0.0
 // @description Open new window with profile in plain text form.
 // @author      Shmuelie
 // @match       https://www.okcupid.com/profile/*
@@ -15,29 +15,34 @@
 
 (function() {
     'use strict';
-    var btn = document.createElement("button");
-    btn.innerHTML = "Copy";
-    document.body.append(btn);
-    btn.onclick = function ()
-    {
-        var pe = document.querySelector(".profile-essays");
-        if (!pe)
-        {
-            return;
+    const profileUserdropdownButton = document.createElement("button");
+    profileUserdropdownButton.classList.add("profile-userdropdown-button");
+    profileUserdropdownButton.textContent = "Copy";
+    const profileUserdropdownItem = document.createElement("li");
+    profileUserdropdownItem.classList.add("profile-userdropdown-dropdown-item");
+    profileUserdropdownItem.appendChild(profileUserdropdownButton);
+    const profileUserdropdown = document.getElementById("profile-userdropdown");
+    profileUserdropdown.appendChild(profileUserdropdownItem);
+
+    profileUserdropdownButton.addEventListener("click", function () {
+        const profile = document.createElement("div");
+        const profileEssaysElement = document.querySelector(".profile-essays");
+        if (profileEssaysElement) {
+            profile.appendChild(profileEssaysElement.cloneNode(true));
         }
-        var a = pe.cloneNode(true);
-        var b = a.getElementsByTagName("button");
-        while (b.length > 0)
-        {
-            b[0].remove();
+        const profileThumbElement = document.querySelector(".profile-thumb");
+        if (profileThumbElement) {
+            profile.appendChild(profileThumbElement.cloneNode(true));
         }
-        var mywindow = window.open('', 'PRINT', 'height=400,width=600');
-        mywindow.document.body.append(a);
-        var pt = document.querySelector(".profile-thumb");
-        if (pt)
-        {
-            var c = pt.cloneNode(true);
-            //mywindow.document.body.append(c);
-        }
-    }
+        const blob = new Blob([profile.outerHTML], { type: "text/html" });
+        const item = new ClipboardItem({
+            "text/html": blob
+        });
+        const data = [item];
+        navigator.clipboard.write(data).then(function() {
+            console.log("Copied to clipboard successfully!");
+        }, function(e) {
+            console.error("Unable to write to clipboard.", e);
+        });
+    });
 })();
