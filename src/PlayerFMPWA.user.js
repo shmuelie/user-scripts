@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        PlayerFM PWA
 // @namespace   net.englard.shmuelie
-// @version     1.3.3
+// @version     1.3.4
 // @description Enables PWA features in PlayerFM web.
 // @author      Shmuelie
 // @match       https://player.fm/*
@@ -91,6 +91,7 @@
         p.listen("pause", onPause);
         p.listen("ended", onEnded);
         p.listen("timeupdate", onTimeupdate);
+        p.listen("playing", onPlay);
 
         ms.setActionHandler("pause", function () {
             p.togglePlayback(false);
