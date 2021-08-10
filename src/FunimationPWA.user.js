@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Funimation PWA
 // @namespace   net.englard.shmuelie
-// @version     1.1.0
+// @version     1.1.1
 // @description Enables PWA features in Funimation web.
 // @author      Shmuelie
 // @match       https://www.funimation.com/player/*
@@ -56,6 +56,7 @@
             p.videoTag.addEventListener("pause", onPause);
             p.videoTag.addEventListener("ended", onEnded);
             p.videoTag.addEventListener("timeupdate", onTimeupdate);
+            p.videoTag.addEventListener("playing", onPlay);
 
             ms.setActionHandler("pause", function () {
                 p.toggleVideoPlayback("off");
