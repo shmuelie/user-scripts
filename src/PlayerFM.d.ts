@@ -30,7 +30,7 @@ interface Player {
     handleAutoplayFromUserPlayHistory(): any | undefined;
     isPlaying(): boolean;
     keepCheckingBufferStateUntilPlaying(): number;
-    listen(event: "loadstart"|"playing"|"loadedmetadata"|"timeupdate"|"pause"|"play"|"seeking"|"ended"|"volumechange"|"error", f: Function): void;
+    listen<K extends keyof HTMLMediaElementEventMap>(type: K, listener: (this: HTMLVideoElement, ev: HTMLMediaElementEventMap[K]) => any): void;
     pause(): void;
     populateFromPlayHistory(): any;
     repaintPageContent(): any;
