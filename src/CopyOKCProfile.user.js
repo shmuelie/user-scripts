@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name        Copy OKC Profile
 // @namespace   net.englard.shmuelie
-// @version     2.0.0
+// @version     2.0.1
 // @description Open new window with profile in plain text form.
 // @author      Shmuelie
 // @match       https://www.okcupid.com/profile/*
+// @match       https://okcupid.com/profile/*
 // @grant       none
 // @website     https://github.com/shmuelie/user-scripts/blob/main/src/CopyOKCProfile.user.js
 // @updateURL   https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/CopyOKCProfile.user.js
