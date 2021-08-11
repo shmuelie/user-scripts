@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Copy OKC Profile
 // @namespace   net.englard.shmuelie
-// @version     2.0.1
+// @version     2.2.0
 // @description Open new window with profile in plain text form.
 // @author      Shmuelie
 // @match       https://www.okcupid.com/profile/*
@@ -22,8 +22,6 @@
     const profileUserdropdownItem = document.createElement("li");
     profileUserdropdownItem.classList.add("profile-userdropdown-dropdown-item");
     profileUserdropdownItem.appendChild(profileUserdropdownButton);
-    const profileUserdropdown = document.getElementById("profile-userdropdown");
-    profileUserdropdown.appendChild(profileUserdropdownItem);
 
     profileUserdropdownButton.addEventListener("click", function () {
         const profile = document.createElement("div");
@@ -45,5 +43,17 @@
         }, function(e) {
             console.error("Unable to write to clipboard.", e);
         });
+    });
+
+    const observer = new MutationObserver(function (mutations, obs) {
+        const profileUserdropdown = document.getElementById("profile-userdropdown");
+        if (profileUserdropdown) {
+            profileUserdropdown.appendChild(profileUserdropdownItem);
+            observer.disconnect();
+        }
+    });
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
     });
 })();
