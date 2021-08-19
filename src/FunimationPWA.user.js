@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Funimation PWA
 // @namespace   net.englard.shmuelie
-// @version     1.1.1
+// @version     1.1.2
 // @description Enables PWA features in Funimation web.
 // @author      Shmuelie
 // @match       https://www.funimation.com/player/*
@@ -51,7 +51,20 @@
             p.goBack10();
         }
 
-        p.player.ready(function () {
+        function initialize()
+        {
+            if (p.player && p.player.ready)
+            {
+                p.player.ready(setup);
+            }
+            else
+            {
+                setTimeout(initialize, 500);
+            }
+        }
+
+        function setup()
+        {
             p.videoTag.addEventListener("play", onPlay);
             p.videoTag.addEventListener("pause", onPause);
             p.videoTag.addEventListener("ended", onEnded);
@@ -66,6 +79,8 @@
             });
             ms.setActionHandler("seekforward", onSeekForward);
             ms.setActionHandler("seekbackward", onSeekBackward);
-        });
+        }
+
+        initialize();
     }
 })();
