@@ -8,6 +8,12 @@ Adds support for context menu on OnlyFans and Spotlightr.
 
 [![Install Allow Context](https://img.shields.io/badge/install-Allow%20Context-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/AllowContext.user.js)
 
+## BookWalker Save
+
+Allow saving BookWalker Canvas images.
+
+[![Install BookWalker Save](https://img.shields.io/badge/install-BookWalker%20Save-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/BookWalkerSave.user.js)
+
 ## Copy OKC Profile
 
 Open new window with profile in plain text form.
