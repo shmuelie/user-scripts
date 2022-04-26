@@ -32,6 +32,12 @@ Extract images from discord channel.
 
 [![Install Discord Image Download](https://img.shields.io/badge/install-Discord%20Image%20Download-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/DiscordImageDownload.user.js)
 
+## Doxy.me Check In
+
+Makes Doxy.me check in auto complete for first name.
+
+[![Install Doxy.me Check In Download](https://img.shields.io/badge/install-Doxy.me%20Check%20In%20Download-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/DoxyName.user.js)
+
 ## Funimation PWA
 
 Enables PWA features in Funimation web.
