@@ -38,12 +38,6 @@ Makes Doxy.me check in auto complete for first name.
 
 [![Install Doxy.me Check In Download](https://img.shields.io/badge/install-Doxy.me%20Check%20In%20Download-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/DoxyName.user.js)
 
-## Funimation PWA
-
-Enables PWA features in Funimation web.
-
-[![Install Funimation PWA](https://img.shields.io/badge/install-Funimation%20PWA-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/FunimationPWA.user.js)
-
 ## Get Jump Player Video
 
 Append video URLs to end of Jump Player pages.
