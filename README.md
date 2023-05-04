@@ -2,6 +2,12 @@
 
 [Tampermonkey](https://www.tampermonkey.net/) Scripts.
 
+## ADO Collapse All Button
+
+Adds a collapse all button to ADO PR Reviews
+
+[![Install ADO Collapse All Button](https://img.shields.io/badge/install-ADO%20Collapse%20All%20Button-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/AdoCollapseAll.user.js)
+
 ## Allow Context
 
 Adds support for context menu on OnlyFans and Spotlightr.
