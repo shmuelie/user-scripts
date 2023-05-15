@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        ADO Collapse All Button
 // @namespace   net.englard.shmuelie
-// @version     1.0.0
+// @version     1.0.1
 // @description Adds a collapse all button to ADO PR Reviews
 // @author      Shmuelie
 // @match       https://*.visualstudio.com/U*/_git/*/pullrequest/*
@@ -44,6 +44,8 @@
             collapseAllButtonWrapper.appendChild(document.createElement("div"));
 
             let collapseAllMenubar = document.createElement("div");
+            collapseAllMenubar.role = "menubar";
+            collapseAllMenubar.classList.add("bolt-header-commandbar", "bolt-button-group", "flex-row");
             collapseAllMenubar.appendChild(collapseAllButtonWrapper);
             toolbar.appendChild(collapseAllMenubar);
         }, 0);
