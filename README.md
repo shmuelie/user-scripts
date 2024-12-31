@@ -8,6 +8,12 @@ Remove blurred items from DeviantArt notifications
 
 [![Install Clear Blurs](https://img/shields/io/badge/install-Clear%20Blurs-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/ClearBlurs.user.js)
 
+## ADO Collapse All Button
+
+Adds a collapse all button to ADO PR Reviews
+
+[![Install ADO Collapse All Button](https://img.shields.io/badge/install-ADO%20Collapse%20All%20Button-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/AdoCollapseAll.user.js)
+
 ## Allow Context
 
 Adds support for context menu on OnlyFans and Spotlightr.
