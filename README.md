@@ -2,6 +2,12 @@
 
 [Tampermonkey](https://www.tampermonkey.net/) Scripts.
 
+## Clear Blurs
+
+Remove blurred items from DeviantArt notifications
+
+[![Install Clear Blurs](https://img/shields/io/badge/install-Clear%20Blurs-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/ClearBlurs.user.js)
+
 ## Allow Context
 
 Adds support for context menu on OnlyFans and Spotlightr.
