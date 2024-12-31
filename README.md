@@ -6,7 +6,7 @@
 
 Remove blurred items from DeviantArt notifications
 
-[![Install Clear Blurs](https://img/shields/io/badge/install-Clear%20Blurs-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/ClearBlurs.user.js)
+[![Install Clear Blurs](https://img.shields.io/badge/install-Clear%20Blurs-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/ClearBlurs.user.js)
 
 ## ADO Collapse All Button
 
