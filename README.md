@@ -68,6 +68,12 @@ Copies SYAS profile information in a clean manner to clipboard.
 
 [![Install SawYouAtSinai Profile Copier](https://img.shields.io/badge/install-SawYouAtSinai%20Profile%20Copier-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/SYASProfileCopyer.user.js)
 
+## Select Blurs
+
+Select blurred items from DeviantArt notifications
+
+[![Install Select Blurs](https://img.shields.io/badge/install-Select%20Blurs-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/SelectBlurs.user.js)
+
 ## Skip Leaving Messages
 
 Skip redirect permission pages.
