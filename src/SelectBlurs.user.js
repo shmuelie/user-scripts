@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Select Blurs
 // @namespace    net.englard.shmuelie
-// @version      1.0.0
+// @version      1.1.0
 // @description  Select blurred items from DeviantArt notifications
 // @author       Shmuelie
 // @match        https://www.deviantart.com/notifications/watch/deviations*
@@ -33,15 +33,41 @@
         });
     };
 
-    const toolbar = document.querySelector("span[role=button].reset-button").parentNode;
     const clearbtn = document.createElement("button");
-    clearbtn.innerText = "Select Blured";
-    clearbtn.addEventListener("click", selectBlured);
+    const selectionClearbtn = document.createElement("button");
+
+    const thumbContainer = document.querySelector("div[data-testid=content_row]").parentElement.parentElement;
+    let observer = null;
+
+    function selectClicked() {
+        if (observer) {
+            observer.disconnect();
+            observer = null;
+            clearbtn.innerText = "Start Selecting Blured";
+            selectionClearbtn.innerText = "Start Selecting Blured";
+        }
+        else {
+            clearbtn.innerText = "Stop Selecting Blured";
+            selectionClearbtn.innerText = "Stop Selecting Blured";
+            selectBlured();
+            observer = new MutationObserver(function () {
+                selectBlured();
+            });
+            observer.observe(thumbContainer, {
+                attributes: false,
+                childList: true,
+                subtree: true
+            });
+        }
+    }
+
+    const toolbar = document.querySelector("span[role=button].reset-button").parentNode;
+    clearbtn.innerText = "Start Selecting Blured";
+    clearbtn.addEventListener("click", selectClicked);
     toolbar.appendChild(clearbtn);
 
     const selectionToolbar = document.querySelector("input[type=checkbox][aria-label='Select All']").parentNode.parentNode;
-    const selectionClearbtn = document.createElement("button");
-    selectionClearbtn.innerText = "Select Blured";
-    selectionClearbtn.addEventListener("click", selectBlured);
+    selectionClearbtn.innerText = "Start Selecting Blured";
+    selectionClearbtn.addEventListener("click", selectClicked);
     selectionToolbar.appendChild(selectionClearbtn);
 })();
