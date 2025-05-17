@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Select Blurs
 // @namespace    net.englard.shmuelie
-// @version      1.1.0
+// @version      1.2.0
 // @description  Select blurred items from DeviantArt notifications
 // @author       Shmuelie
 // @match        https://www.deviantart.com/notifications/watch/deviations*
@@ -9,6 +9,7 @@
 // @grant        none
 // @supportURL   https://github.com/shmuelie/user-scripts/issues
 // @website      https://github.com/shmuelie/user-scripts/blob/main/src/SelectBlurs.user.js
+// @downloadURL  https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/SelectBlurs.user.js
 // @updateURL    https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/SelectBlurs.user.js
 // ==/UserScript==
 
@@ -31,6 +32,9 @@
                 checkbx.click();
             }
         });
+        setTimeout(function () {
+            window.scrollTo(0, document.body.scrollHeight);
+        }, 2000);
     };
 
     const clearbtn = document.createElement("button");
