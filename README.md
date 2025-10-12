@@ -2,12 +2,6 @@
 
 [Tampermonkey](https://www.tampermonkey.net/) Scripts.
 
-## Clear Blurs
-
-Remove blurred items from DeviantArt notifications
-
-[![Install Clear Blurs](https://img.shields.io/badge/install-Clear%20Blurs-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/ClearBlurs.user.js)
-
 ## ADO Collapse All Button
 
 Adds a collapse all button to ADO PR Reviews
@@ -79,9 +73,3 @@ Select blurred items from DeviantArt notifications
 Skip redirect permission pages.
 
 [![Install Skip Leaving Messages](https://img.shields.io/badge/install-Skip%20Leaving%20Messages-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/SkipLeavingMessages.user.js)
-
-## YouTube Skip
-
-Skip YouTube redirect permission page.
-
-[![Install YouTube Skip](https://img.shields.io/badge/install-YouTube%20Skip-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/YtSkip.user.js)
