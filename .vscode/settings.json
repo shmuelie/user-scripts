@@ -1,0 +1,7 @@
+{
+    "monkey-wrench.activation-condition.userscriptHeader": true,
+    "monkey-wrench.enable-eslint-config-update": true,
+    "monkey-wrench.enable-js-config-update": true,
+    "monkey-wrench.metadata.author": "Shmuelie",
+    "monkey-wrench.metadata.namespace": "net.englard.shmuelie"
+}
