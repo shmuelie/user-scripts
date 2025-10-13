@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Select Blurs
 // @namespace    net.englard.shmuelie
-// @version      1.2.0
+// @version      1.2.1
 // @description  Select blurred items from DeviantArt notifications
 // @author       Shmuelie
 // @match        https://www.deviantart.com/notifications/watch/deviations*
@@ -31,8 +31,11 @@
      * @returns {void}
      */
     function selectBlur30(img) {
-        const checkbx = img.parentNode.parentNode.parentNode.querySelector("input[type=checkbox]");
-        if (!checkbx.checked) {
+        /**
+         * @type {HTMLInputElement|undefined|null}
+         */
+        const checkbx = img.parentNode?.parentNode?.parentNode?.querySelector("input[type=checkbox]");
+        if (checkbx && !checkbx.checked) {
             checkbx.click();
         }
     }
@@ -52,8 +55,11 @@
      * @returns {void}
      */
     function selectPremium(div) {
-        const checkbx = div.parentNode.parentNode.querySelector("input[type=checkbox]");
-        if (!checkbx.checked) {
+        /**
+         * @type {HTMLInputElement|undefined|null}
+         */
+        const checkbx = div.parentNode?.parentNode?.querySelector("input[type=checkbox]");
+        if (checkbx && !checkbx.checked) {
             checkbx.click();
         }
     }
@@ -63,25 +69,39 @@
      * @returns {void}
      */
     function selectBlured() {
-        Array.from(document.querySelectorAll("section div[data-testid=thumb] img")).filter(blur30Filter).forEach(selectBlur30);
+        Array.from(
+            /** @type {NodeListOf<HTMLImageElement>} */
+            (document.querySelectorAll("section div[data-testid=thumb] img"))
+        ).filter(blur30Filter).forEach(selectBlur30);
         Array.from(document.querySelectorAll('div')).filter(premiumFilter).forEach(selectPremium);
         setTimeout(function () {
             window.scrollTo(0, document.body.scrollHeight);
         }, 2000);
     };
 
-    const clearbtn = document.createElement("button");
-    const selectionClearbtn = document.createElement("button");
+    const startSelectingText = "Start Selecting Blured";
+    const stopSelectingText = "Stop Selecting Blured";
 
-    const thumbContainer = document.querySelector("div[data-testid=content_row]").parentElement.parentElement;
+    const clearbtn = document.createElement("button");
+    clearbtn.innerText = startSelectingText;
+    const selectionClearbtn = document.createElement("button");
+    selectionClearbtn.innerText = startSelectingText;
+
+    const thumbContainer = document.querySelector("div[data-testid=content_row]")?.parentElement?.parentElement;
+
+    if (!thumbContainer) {
+        return;
+    }
+
     /**
      * @type {MutationObserver|null}
      */
     let observer = null;
-
-    const startSelectingText = "Start Selecting Blured";
-    const stopSelectingText = "Stop Selecting Blured";
     function selectClicked() {
+        if (!thumbContainer) {
+            return;
+        }
+
         if (observer) {
             observer.disconnect();
             observer = null;
@@ -103,13 +123,9 @@
         }
     }
 
-    const toolbar = document.querySelector("span[role=button].reset-button").parentNode;
-    clearbtn.innerText = startSelectingText;
     clearbtn.addEventListener("click", selectClicked);
-    toolbar.appendChild(clearbtn);
-
-    const selectionToolbar = document.querySelector("input[type=checkbox][aria-label='Select All']").parentNode.parentNode;
-    selectionClearbtn.innerText = startSelectingText;
     selectionClearbtn.addEventListener("click", selectClicked);
-    selectionToolbar.appendChild(selectionClearbtn);
+
+    document.querySelector("span[role=button].reset-button")?.parentNode?.appendChild(clearbtn);
+    document.querySelector("input[type=checkbox][aria-label='Select All']")?.parentNode?.parentNode?.appendChild(selectionClearbtn);
 })();
