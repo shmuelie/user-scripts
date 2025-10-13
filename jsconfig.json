@@ -3,6 +3,13 @@
     "typeRoots": [
       "./node_modules/@types",
       "@types"
-    ]
+    ],
+    "checkJs": true,
+    "allowJs": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "target": "es2024"
   }
 }
