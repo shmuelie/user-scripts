@@ -32,6 +32,12 @@ Append YTDL cli to Crunchyroll pages.
 
 [![Install Crunchyroll Download](https://img.shields.io/badge/install-Crunchyroll%20Download-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/CrunchyrollDownload.user.js)
 
+## DeviantArt Video Context Menu
+
+Removes the overlay that blocks the context menu on DeviantArt videos
+
+[![Install DeviantArt Video Context Menu](https://img.shields.io/badge/install-DeviantArt%20Video%20Context%20Menu-green?style=for-the-badge)](https://raw.githubusercontent.com/shmuelie/user-scripts/main/src/DeviantArtVideoContextMenu.user.js)
+
 ## Discord Image Download
 
 Extract images from discord channel.
