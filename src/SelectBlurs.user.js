@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Select Blurs
 // @namespace    net.englard.shmuelie
-// @version      1.3.0
+// @version      1.4.0
 // @description  Select blurred items from DeviantArt notifications
 // @author       Shmuelie
 // @match        https://www.deviantart.com/notifications/watch/deviations*
@@ -66,33 +66,58 @@
 
     const startSelectingText = "Start Selecting Blured";
     const stopSelectingText = "Stop Selecting Blured";
-    const idleTimeout = 5000;
 
     const clearbtn = document.createElement("button");
     clearbtn.innerText = startSelectingText;
     const selectionClearbtn = document.createElement("button");
     selectionClearbtn.innerText = startSelectingText;
 
-    /**
-     * @type {MutationObserver|null}
-     */
+    /** @type {MutationObserver|null} */
     let observer = null;
-    /**
-     * @type {number|null}
-     */
-    let idleTimer = null;
+    /** @type {number|null} */
+    let scrollTimer = null;
+    /** @type {number|null} */
+    let endCheckTimer = null;
+    let noGrowthCount = 0;
 
     function stopSelecting() {
         if (observer) {
             observer.disconnect();
             observer = null;
         }
-        if (idleTimer !== null) {
-            clearTimeout(idleTimer);
-            idleTimer = null;
+        if (scrollTimer !== null) {
+            clearTimeout(scrollTimer);
+            scrollTimer = null;
         }
+        if (endCheckTimer !== null) {
+            clearTimeout(endCheckTimer);
+            endCheckTimer = null;
+        }
+        noGrowthCount = 0;
         clearbtn.innerText = startSelectingText;
         selectionClearbtn.innerText = startSelectingText;
+    }
+
+    /**
+     * After scrolling, check if the page grew. If not, retry a few times before stopping.
+     * @param {number} heightBeforeScroll
+     */
+    function checkForEnd(heightBeforeScroll) {
+        endCheckTimer = setTimeout(function () {
+            endCheckTimer = null;
+            if (document.body.scrollHeight > heightBeforeScroll) {
+                noGrowthCount = 0;
+                selectBlured();
+            } else {
+                noGrowthCount++;
+                if (noGrowthCount >= 3) {
+                    stopSelecting();
+                } else {
+                    window.scrollTo(0, document.body.scrollHeight);
+                    checkForEnd(heightBeforeScroll);
+                }
+            }
+        }, 3000);
     }
 
     /**
@@ -105,12 +130,19 @@
             (document.querySelectorAll("section div[data-testid=thumb] img"))
         ).filter(blur30Filter).forEach(selectBlur30);
         Array.from(document.querySelectorAll('div')).filter(premiumFilter).forEach(selectPremium);
-        if (idleTimer !== null) {
-            clearTimeout(idleTimer);
+        if (scrollTimer !== null) {
+            clearTimeout(scrollTimer);
         }
-        idleTimer = setTimeout(stopSelecting, idleTimeout);
-        setTimeout(function () {
+        if (endCheckTimer !== null) {
+            clearTimeout(endCheckTimer);
+            endCheckTimer = null;
+        }
+        noGrowthCount = 0;
+        scrollTimer = setTimeout(function () {
+            scrollTimer = null;
+            const heightBeforeScroll = document.body.scrollHeight;
             window.scrollTo(0, document.body.scrollHeight);
+            checkForEnd(heightBeforeScroll);
         }, 2000);
     }
 
