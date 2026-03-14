@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Select Blurs
 // @namespace    net.englard.shmuelie
-// @version      1.2.1
+// @version      1.3.0
 // @description  Select blurred items from DeviantArt notifications
 // @author       Shmuelie
 // @match        https://www.deviantart.com/notifications/watch/deviations*
@@ -64,6 +64,37 @@
         }
     }
 
+    const startSelectingText = "Start Selecting Blured";
+    const stopSelectingText = "Stop Selecting Blured";
+    const idleTimeout = 5000;
+
+    const clearbtn = document.createElement("button");
+    clearbtn.innerText = startSelectingText;
+    const selectionClearbtn = document.createElement("button");
+    selectionClearbtn.innerText = startSelectingText;
+
+    /**
+     * @type {MutationObserver|null}
+     */
+    let observer = null;
+    /**
+     * @type {number|null}
+     */
+    let idleTimer = null;
+
+    function stopSelecting() {
+        if (observer) {
+            observer.disconnect();
+            observer = null;
+        }
+        if (idleTimer !== null) {
+            clearTimeout(idleTimer);
+            idleTimer = null;
+        }
+        clearbtn.innerText = startSelectingText;
+        selectionClearbtn.innerText = startSelectingText;
+    }
+
     /**
      * Select all blurred items on the page and scroll down to load more
      * @returns {void}
@@ -74,39 +105,21 @@
             (document.querySelectorAll("section div[data-testid=thumb] img"))
         ).filter(blur30Filter).forEach(selectBlur30);
         Array.from(document.querySelectorAll('div')).filter(premiumFilter).forEach(selectPremium);
+        if (idleTimer !== null) {
+            clearTimeout(idleTimer);
+        }
+        idleTimer = setTimeout(stopSelecting, idleTimeout);
         setTimeout(function () {
             window.scrollTo(0, document.body.scrollHeight);
         }, 2000);
-    };
-
-    const startSelectingText = "Start Selecting Blured";
-    const stopSelectingText = "Stop Selecting Blured";
-
-    const clearbtn = document.createElement("button");
-    clearbtn.innerText = startSelectingText;
-    const selectionClearbtn = document.createElement("button");
-    selectionClearbtn.innerText = startSelectingText;
-
-    const thumbContainer = document.querySelector("div[data-testid=content_row]")?.parentElement?.parentElement;
-
-    if (!thumbContainer) {
-        return;
     }
 
     /**
-     * @type {MutationObserver|null}
+     * @param {HTMLElement} thumbContainer
      */
-    let observer = null;
-    function selectClicked() {
-        if (!thumbContainer) {
-            return;
-        }
-
+    function selectClicked(thumbContainer) {
         if (observer) {
-            observer.disconnect();
-            observer = null;
-            clearbtn.innerText = startSelectingText;
-            selectionClearbtn.innerText = startSelectingText;
+            stopSelecting();
         }
         else {
             clearbtn.innerText = stopSelectingText;
@@ -123,9 +136,45 @@
         }
     }
 
-    clearbtn.addEventListener("click", selectClicked);
-    selectionClearbtn.addEventListener("click", selectClicked);
+    /**
+     * Set up buttons once the page content is available
+     * @returns {boolean}
+     */
+    function initialize() {
+        const thumbContainer = document.querySelector("div[data-testid=content_row]")?.parentElement?.parentElement;
+        if (!thumbContainer) {
+            return false;
+        }
 
-    document.querySelector("span[role=button].reset-button")?.parentNode?.appendChild(clearbtn);
-    document.querySelector("input[type=checkbox][aria-label='Select All']")?.parentNode?.parentNode?.appendChild(selectionClearbtn);
+        const resetButtonParent = document.querySelector("span[role=button].reset-button")?.parentNode;
+        const selectAllParent = document.querySelector("input[type=checkbox][aria-label='Select All']")?.parentNode?.parentNode;
+        if (!resetButtonParent && !selectAllParent) {
+            return false;
+        }
+
+        function handleClick() { selectClicked(thumbContainer); }
+        clearbtn.addEventListener("click", handleClick);
+        selectionClearbtn.addEventListener("click", handleClick);
+
+        if (resetButtonParent) {
+            resetButtonParent.appendChild(clearbtn);
+        }
+        if (selectAllParent) {
+            selectAllParent.appendChild(selectionClearbtn);
+        }
+        return true;
+    }
+
+    // Try immediately; if the page hasn't loaded content yet, watch for it
+    if (!initialize()) {
+        const pageObserver = new MutationObserver(function () {
+            if (initialize()) {
+                pageObserver.disconnect();
+            }
+        });
+        pageObserver.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
 })();
