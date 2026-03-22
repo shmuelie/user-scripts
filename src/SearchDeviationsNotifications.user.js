@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Search Deviations Notifications
 // @namespace    net.englard.shmuelie
-// @version      1.0.3
+// @version      1.1.0
 // @description  Adds a search box to filter DeviantArt deviations notifications by title
 // @author       Shmuelie
 // @match        https://www.deviantart.com/notifications/watch/deviations*
@@ -26,16 +26,21 @@
         if (styles) {
             input.style.fontFamily = styles.fontFamily;
             input.style.fontSize = styles.fontSize;
+            input.style.fontWeight = styles.fontWeight;
             input.style.color = styles.color;
+            input.style.lineHeight = styles.lineHeight;
         }
         input.style.background = "none";
-        input.style.border = "1px solid currentColor";
-        input.style.borderRadius = "4px";
-        input.style.padding = "4px 8px";
-        input.style.margin = "0 8px";
+        input.style.border = "none";
+        input.style.borderBottom = "1px solid currentColor";
+        input.style.borderRadius = "0";
+        input.style.padding = "0";
+        input.style.margin = "0";
         input.style.outline = "none";
-        input.style.opacity = "0.7";
-        input.placeholder = "Search deviations\u2026";
+        input.style.minWidth = "0";
+        input.style.width = "12ch";
+        input.style.flexShrink = "1";
+        input.placeholder = "Filter\u2026";
     }
 
     /**
@@ -72,15 +77,16 @@
             return false;
         }
 
-        const resetButton = document.querySelector("span[role=button].reset-button");
-        const toolbar = resetButton?.parentNode;
-        if (!toolbar) {
+        const selectAllBtn = Array.from(document.querySelectorAll("button")).find(function (b) { return b.textContent?.trim() === "Select All"; });
+        const selectAllParent = selectAllBtn?.parentNode?.parentNode;
+        if (!selectAllParent) {
             return false;
         }
 
         const searchInput = document.createElement("input");
         searchInput.type = "text";
-        styleInput(searchInput, resetButton);
+        styleInput(searchInput, selectAllBtn || null);
+        searchInput.style.marginLeft = "16px";
 
         /** @type {number|null} */
         let debounceTimer = null;
@@ -94,7 +100,7 @@
             }, 200);
         });
 
-        toolbar.appendChild(searchInput);
+        selectAllParent.appendChild(searchInput);
 
         // Re-apply filter when new content loads from infinite scroll.
         // Disconnect while applying to avoid a feedback loop where

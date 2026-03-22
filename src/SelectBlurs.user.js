@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Select Blurs
 // @namespace    net.englard.shmuelie
-// @version      1.5.0
+// @version      1.6.0
 // @description  Select blurred items from DeviantArt notifications
 // @author       Shmuelie
 // @match        https://www.deviantart.com/notifications/watch/deviations*
@@ -68,7 +68,7 @@
     const stopSelectingText = "Stop Selecting Blured";
 
     /**
-     * Style a button to match a nearby DeviantArt UI element
+     * Copy computed styles from a reference element onto a button
      * @param {HTMLButtonElement} btn
      * @param {Element|null} reference
      */
@@ -85,9 +85,9 @@
         btn.style.background = "none";
         btn.style.border = "none";
         btn.style.padding = "0";
-        btn.style.margin = "0 8px";
         btn.style.cursor = "pointer";
-        btn.style.textDecoration = "underline";
+        btn.style.whiteSpace = "nowrap";
+        btn.style.flexShrink = "0";
     }
 
     const clearbtn = document.createElement("button");
@@ -203,13 +203,20 @@
 
         const resetButton = document.querySelector("span[role=button].reset-button");
         const resetButtonParent = resetButton?.parentNode;
-        const selectAllParent = document.querySelector("input[type=checkbox][aria-label='Select All']")?.parentNode?.parentNode;
+        const selectAllBtn = Array.from(document.querySelectorAll("button")).find(function (b) { return b.textContent?.trim() === "Select All"; });
+        const selectAllParent = selectAllBtn?.parentNode?.parentNode;
         if (!resetButtonParent && !selectAllParent) {
             return false;
         }
 
+        // Style toolbar button to match the tab buttons beside it
         styleButton(clearbtn, resetButton);
-        styleButton(selectionClearbtn, resetButton);
+        clearbtn.style.padding = "22px 0px 20px";
+        clearbtn.style.marginLeft = "24px";
+
+        // Style selection toolbar button to match the Select All button beside it
+        styleButton(selectionClearbtn, selectAllBtn || null);
+        selectionClearbtn.style.marginLeft = "16px";
 
         function handleClick() { selectClicked(thumbContainer); }
         clearbtn.addEventListener("click", handleClick);
