@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Search Deviations Notifications
 // @namespace    net.englard.shmuelie
-// @version      1.0.1
+// @version      1.0.2
 // @description  Adds a search box to filter DeviantArt deviations notifications by title
 // @author       Shmuelie
 // @match        https://www.deviantart.com/notifications/watch/deviations*
@@ -46,19 +46,19 @@
      */
     function applyFilter(query) {
         const lowerQuery = query.toLowerCase().trim();
+        /** @type {NodeListOf<HTMLImageElement>} */
         const images = document.querySelectorAll("section div[data-testid=thumb] img");
         images.forEach(function (img) {
             const itemContainer = img.parentNode?.parentNode?.parentNode;
-            if (!itemContainer || !(/** @type {HTMLElement} */ (itemContainer)).style) {
+            if (!(itemContainer instanceof HTMLElement)) {
                 return;
             }
-            const container = /** @type {HTMLElement} */ (itemContainer);
             if (!lowerQuery) {
-                container.style.display = "";
+                itemContainer.style.display = "";
                 return;
             }
             const title = (img.alt || img.title || "").toLowerCase();
-            container.style.display = title.indexOf(lowerQuery) !== -1 ? "" : "none";
+            itemContainer.style.display = title.includes(lowerQuery) ? "" : "none";
         });
     }
 
