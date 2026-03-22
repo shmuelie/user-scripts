@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Search Deviations Notifications
 // @namespace    net.englard.shmuelie
-// @version      1.0.2
+// @version      1.0.3
 // @description  Adds a search box to filter DeviantArt deviations notifications by title
 // @author       Shmuelie
 // @match        https://www.deviantart.com/notifications/watch/deviations*
@@ -96,9 +96,17 @@
 
         toolbar.appendChild(searchInput);
 
-        // Re-apply filter when new content loads from infinite scroll
+        // Re-apply filter when new content loads from infinite scroll.
+        // Disconnect while applying to avoid a feedback loop where
+        // setting display triggers the observer again.
+        let isApplying = false;
         const contentObserver = new MutationObserver(function () {
+            if (isApplying) {
+                return;
+            }
+            isApplying = true;
             applyFilter(searchInput.value);
+            isApplying = false;
         });
         contentObserver.observe(thumbContainer, {
             childList: true,
