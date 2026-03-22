@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Search Deviations Notifications
 // @namespace    net.englard.shmuelie
-// @version      1.0.0
+// @version      1.0.1
 // @description  Adds a search box to filter DeviantArt deviations notifications by title
 // @author       Shmuelie
 // @match        https://www.deviantart.com/notifications/watch/deviations*
@@ -39,56 +39,26 @@
     }
 
     /**
-     * Get the title text for a deviation thumbnail element
-     * @param {Element} thumb
-     * @returns {string}
-     */
-    function getThumbTitle(thumb) {
-        const img = thumb.querySelector("img");
-        if (img) {
-            return img.alt || img.title || "";
-        }
-        const link = thumb.querySelector("a[href]");
-        if (link) {
-            return link.textContent || link.getAttribute("title") || "";
-        }
-        return thumb.textContent || "";
-    }
-
-    /**
-     * Get the notification row ancestor that should be shown/hidden
-     * @param {Element} thumb
-     * @returns {HTMLElement|null}
-     */
-    function getNotificationRow(thumb) {
-        let el = thumb.parentElement;
-        while (el) {
-            if (el.querySelector("input[type=checkbox]")) {
-                return el;
-            }
-            el = el.parentElement;
-        }
-        return null;
-    }
-
-    /**
-     * Apply the current search filter to all visible thumbnails
+     * Apply the current search filter to all visible thumbnails.
+     * Uses the same DOM traversal as SelectBlurs: from img, 3 levels
+     * up is the item container that holds both the thumb and checkbox.
      * @param {string} query
      */
     function applyFilter(query) {
         const lowerQuery = query.toLowerCase().trim();
-        const thumbs = document.querySelectorAll("section div[data-testid=thumb]");
-        thumbs.forEach(function (thumb) {
-            const row = getNotificationRow(thumb);
-            if (!row) {
+        const images = document.querySelectorAll("section div[data-testid=thumb] img");
+        images.forEach(function (img) {
+            const itemContainer = img.parentNode?.parentNode?.parentNode;
+            if (!itemContainer || !(/** @type {HTMLElement} */ (itemContainer)).style) {
                 return;
             }
+            const container = /** @type {HTMLElement} */ (itemContainer);
             if (!lowerQuery) {
-                row.style.display = "";
+                container.style.display = "";
                 return;
             }
-            const title = getThumbTitle(thumb).toLowerCase();
-            row.style.display = title.indexOf(lowerQuery) !== -1 ? "" : "none";
+            const title = (img.alt || img.title || "").toLowerCase();
+            container.style.display = title.indexOf(lowerQuery) !== -1 ? "" : "none";
         });
     }
 
